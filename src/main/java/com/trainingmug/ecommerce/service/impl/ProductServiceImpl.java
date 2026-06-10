@@ -166,6 +166,28 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll().stream().collect(Collectors.groupingBy(Product::getCategory, Collectors.collectingAndThen(Collectors.toList(), products -> products.stream().sorted(Comparator.comparing(Product::getMaxRetailPrice).reversed()).limit(3).toList())));
 
     }
+
+    @Override
+    public Product update(Product product) {
+
+        Product existingProduct = productRepository
+                .findById(product.getId())
+                .orElseThrow(() ->
+                        new ProductNotFoundException(
+                                "Product not found with id: "
+                                        + product.getId()));
+
+        return productRepository.update(product);
+    }
+
+    @Override
+    public void delete(int id) {
+        productRepository.findById(id)
+                .orElseThrow(() ->
+                        new ProductNotFoundException(
+                                "Product not found with id: " + id));
+        productRepository.delete(id);
+    }
 }
 
 
