@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface ProductService  {
+public interface ProductService {
 
     Product save(Product product) throws ProductAlreadyExists;
+
     List<Product> getAll();
+
     List<Product> getProductsByAvailability(boolean isAvailable);
 
     boolean getProductByCategory(String category);
@@ -64,6 +66,9 @@ public interface ProductService  {
 
     Map<String, List<Product>> getTop3ExpensiveProductsByCategory();
 
+    Product update(Product product) throws ProductNotFoundException;
+
+    void delete(int id) throws ProductNotFoundException;
 }
 
 
