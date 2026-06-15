@@ -18,6 +18,7 @@ public interface CustomerService {
 
     List<Customer> getAll();
 
+
     void delete(int id) throws CustomerNotFoundException;
 
     CustomerResponseDto login(LoginRequestDto loginRequestDto) throws CustomerNotFoundException;
